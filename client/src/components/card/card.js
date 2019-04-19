@@ -1,11 +1,12 @@
 import React from "react";
 import "./style.css";
+import { createReadStream } from "fs";
 
 function Card(props) {
     return (
 
         <div id="playerCard">
-            <div className="card-body" id={props.id}>
+            <div className="card-body">
                 <h5 className="card-title" >{props.playerName}</h5>
                 <p className="card-text" >{props.title}</p>
                 <hr></hr>

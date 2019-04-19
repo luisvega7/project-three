@@ -29,30 +29,34 @@ class Battle extends Component {
             asArray: true,
             keepKeys: true,
         });
+        this.firstFiveCards()
     }
    
-    drawCard = () =>{
-       //this function will draw one random card from the users deck into their hand to play after a card is played from the 5 in hand cards
-       //use this function to loop 5 times at the start of the game to generate the 5 starting cards
-       //We will then loop through the cardsInHand array in the Hand component to display the cards to the battle page
-       //Also, this is not working correctly or at all at the moment
-        let randomCards = image.splice(Math.floor(Math.random()*image.length));
-        
-        this.setState({cardsInHand: [...this.state.cardsInHand, ...randomCards]})
-        
-             
-    };
-    firstFiveCards = () =>{
+   
 
-        for(let i = 0; i < 5; i++){
-           
+    firstFiveCards = () =>{
+        let myHand = this.state.cardsInHand
+        if(myHand.length < 5){
+
+            let randomCard = image[Math.floor(Math.random()*image.length)];
+            if (!myHand.includes(randomCard)){
+                // console.log(randomCard)
+                   myHand.push(randomCard);
+                   this.setState({
+                       cardsInHand: myHand
+                    });
+                    
+                }
+                this.firstFiveCards();
+           }
+           console.log(this.state.cardsInHand);
         }
-    }
+    
 
     render() {
         
-            console.log(this.state.firebaseData);
-            console.log( this.state.cardsInHand);
+            // console.log(this.state.firebaseData);
+            // console.log( this.state.cardsInHand);
             return (
                 <div>
                     <h2>Battle Page</h2>
